@@ -6,11 +6,11 @@ import edu.wit.scds.ds.bag.BagInterface ;
 /**
  * 
  * 
- * @author wysockil, gagnonn2
- * @version 1.0.0 2022-09-26 Initial implementation
+ * @author wysockil
+ * @version 1.0.0 2022-09-29 Initial implementation
  *
  */
-public class SpellChecker implements BagInterface<T>
+public class Dictionary implements BagInterface<T>
     {
 
     @Override
@@ -102,4 +102,4 @@ public class SpellChecker implements BagInterface<T>
         }
 
     }
-   // end class SpellChecker
+   // end class Dictionary
