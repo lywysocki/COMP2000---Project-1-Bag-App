@@ -2,7 +2,9 @@
 package edu.wit.scds.ds.bag.app ;
 
 import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
+
 /**
+ * return missspelled words & return words correctly spelled wioth punctuation
  * 
  * 
  * @author wysockil
@@ -11,5 +13,7 @@ import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
  */
 public class MisspelledWords
     {
+    
+    
 
     }   // end class MisspelledWords
