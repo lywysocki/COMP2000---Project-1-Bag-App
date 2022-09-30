@@ -10,7 +10,7 @@ import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
  * @version 1.0.0 2022-09-30 Initial implementation
  *
  */
-public class FileConverter
+public class Dictionary
     {
 
-    }   // end class FileConverter
+    }   // end class Dictionary
