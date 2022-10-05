@@ -28,9 +28,9 @@ public class SpellChecker
         Scanner dictionary = new Scanner( new File( "./data/american-english-JL.txt" ), "Cp1252" ) ;
 
         // Creating Arraylist of strings for both files
-        List<String> file1List = new ArrayList<String>() ;
-        List<String> file2List = new ArrayList<String>() ;
-        List<String> dictionaryList = new ArrayList<String>() ;
+        List<String> file1List = new ArrayList<>() ;
+        List<String> file2List = new ArrayList<>() ;
+        List<String> dictionaryList = new ArrayList<>() ;
 
         // Reading both files and adding contents to ArrayList
         while ( file1.hasNext() )
@@ -56,6 +56,7 @@ public class SpellChecker
         String[] file2Array = file2List.toArray( new String[ 0 ] ) ;
         String[] dictionaryArray = dictionaryList.toArray( new String[ 0 ] ) ;
 
+        // Removes special characters
         for ( int i = 0 ; i < file1Array.length ; i++ )
             {
             file1Array[ i ] = file1Array[ i ].replaceAll( "[.,;]", "" ) ;
@@ -119,24 +120,30 @@ public class SpellChecker
 
             }
 
+        // Printing results
         System.out.println( "The total word count of the-lancashire-cotton-famine.txt is " +
                             file1Array.length + "." ) ;
+        System.out.println("The total number of correctly spelt words: " + correctWordsBagFile1.getCurrentSize());
         System.out.println( "The list of correct words: " ) ;
         printBag( correctWordsBagFile1 ) ;
+        System.out.println("The total number of incorrectly spelt words: " + incorrectWordsBagFile1.getCurrentSize());
         System.out.println( "The list of incorrect words: " ) ;
         printBag( incorrectWordsBagFile1 ) ;
         System.out.println() ;
 
         System.out.println( "The total word count of wit-attendance-policy.txt is " +
                             file2Array.length + "." ) ;
+        System.out.println("The total number of correctly spelt words: " + correctWordsBagFile2.getCurrentSize());
         System.out.println( "The list of correct words: " ) ;
         printBag( correctWordsBagFile2 ) ;
+        System.out.println("The total number of incorrectly spelt words: " + incorrectWordsBagFile2.getCurrentSize());
         System.out.println( "The list of incorrect words: " ) ;
         printBag( incorrectWordsBagFile2 ) ;
 
         }
 
 
+    // Used to print contents of bag
     private static void printBag( final BagInterface<String> aBag )
         {
         final Object[] bagArray = aBag.toArray() ;
