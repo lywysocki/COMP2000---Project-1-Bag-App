@@ -61,7 +61,7 @@ public class SpellChecker
             file1Array[ i ] = file1Array[ i ].replaceAll( "[.,;]", "" ) ;
 
             }
-        
+
         for ( int i = 0 ; i < file2Array.length ; i++ )
             {
             file2Array[ i ] = file2Array[ i ].replaceAll( "[.,;]", "" ) ;
@@ -97,7 +97,7 @@ public class SpellChecker
                 }
 
             }
-        
+
         // Checking if words appear in dictionary for file2
         for ( int i = 0 ; i < file2Array.length ; i++ )
             {
@@ -126,7 +126,7 @@ public class SpellChecker
         System.out.println( "The list of incorrect words: " ) ;
         printBag( incorrectWordsBagFile1 ) ;
         System.out.println() ;
-        
+
         System.out.println( "The total word count of wit-attendance-policy.txt is " +
                             file2Array.length + "." ) ;
         System.out.println( "The list of correct words: " ) ;
