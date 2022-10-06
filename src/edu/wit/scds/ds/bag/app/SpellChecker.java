@@ -2,14 +2,13 @@
 package edu.wit.scds.ds.bag.app ;
 
 import edu.wit.scds.ds.bag.BagInterface ;
-import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
-
 import java.io.File ;
 import java.io.FileNotFoundException ;
-import java.util.ArrayList ;
 import java.util.Scanner ;
 
 /**
+ * Program that uses a dictionary bag to spell check text files
+ * 
  * @author Noah Gagnon
  *
  * @version 1.0.0 2022-09-26 Initial implementation
@@ -24,97 +23,33 @@ public class SpellChecker
     private static final String WAP = "wit-attendance-policy.txt" ;
 
     /**
-     * Program that uses a dictionary to spell check words within text files
+     * Program that uses a dictionary to spell check words within specific text files
      *
      * @param args
      *     run String[] args for program
      *
      * @throws FileNotFoundException
-     *     if file does not exist, is corrupted, or cannot be found
+     *     if file is corrupted, does not exist, or cannot be found
      */
-    public static void main( final String[] args ) throws FileNotFoundException
+    @SuppressWarnings( "resource" )
+    public static void main( String[] args ) throws FileNotFoundException
         {
+        TextBagger theLancashireCottonFamine =
+                                        new TextBagger( new Scanner( new File( "./data/the-lancashire-cotton-famine.txt" ) ) ) ;
+        TextBagger witAttendancePolicy = new TextBagger( new Scanner( new File( "./data/wit-attendance-policy.txt" ),
+                                                                      "Cp1252" ) ) ;
 
-        /*
-         * Reading in files via Scanner, putting into ArrayLists, removing special
-         * characters from files so it won't effect future comparisons
-         */
-        @SuppressWarnings( "resource" )
-        Scanner file1 = new Scanner( new File( "./data/the-lancashire-cotton-famine.txt" ) ) ;
-        Dictionary tlcfDICT = new Dictionary( file1 ) ;
-        ArrayList<String> tlcfAL = tlcfDICT.getDictionary() ;
-        MisspelledWords newTLCF = new MisspelledWords( tlcfAL ) ;
-        tlcfAL = newTLCF.removeSpecialCharacters() ;
+        toPrint( TLCF,
+                 theLancashireCottonFamine.getTextBag(),
+                 theLancashireCottonFamine.getCorrectWordsBag(),
+                 theLancashireCottonFamine.getIncorrectWordsBag() ) ;
 
-        @SuppressWarnings( "resource" )
-        Scanner file2 = new Scanner( new File( "./data/wit-attendance-policy.txt" ), "Cp1252" ) ;
-        Dictionary wapDICT = new Dictionary( file2 ) ;
-        ArrayList<String> wapAL = wapDICT.getDictionary() ;
-        MisspelledWords newWAP = new MisspelledWords( wapAL ) ;
-        wapAL = newWAP.removeSpecialCharacters() ;
-
-        @SuppressWarnings( "resource" )
-        Scanner dictionaryTXT = new Scanner( new File( "./data/american-english-JL.txt" ),
-                                             "Cp1252" ) ;
-        Dictionary dictionary = new Dictionary( dictionaryTXT ) ;
-        ArrayList<String> dict = dictionary.getDictionary() ;
-
-        /*
-         * Turning Arrays into bags
-         */
-        BagInterface<String> tlcfBag = new ResizableArrayBag<>( tlcfAL.toArray( new String[ 0 ] ) ) ;
-        BagInterface<String> wapBag = new ResizableArrayBag<>( wapAL.toArray( new String[ 0 ] ) ) ;
-        BagInterface<String> dictionaryBag =
-                                        new ResizableArrayBag<>( dict.toArray( new String[ 0 ] ) ) ;
-        BagInterface<String> correctWordsBagTLCF = new ResizableArrayBag<>() ;
-        BagInterface<String> incorrectWordsBagTLCF = new ResizableArrayBag<>() ;
-        BagInterface<String> correctWordsBagWAP = new ResizableArrayBag<>() ;
-        BagInterface<String> incorrectWordsBagWAP = new ResizableArrayBag<>() ;
-
-        inDictionary( tlcfAL, dictionary, correctWordsBagTLCF, incorrectWordsBagTLCF ) ;
-        inDictionary( wapAL, dictionary, correctWordsBagWAP, incorrectWordsBagWAP ) ;
-
-        toPrint( TLCF, tlcfBag, correctWordsBagTLCF, incorrectWordsBagTLCF ) ;
-        toPrint( WAP, wapBag, correctWordsBagWAP, incorrectWordsBagWAP ) ;
+        toPrint( WAP,
+                 witAttendancePolicy.getTextBag(),
+                 witAttendancePolicy.getCorrectWordsBag(),
+                 witAttendancePolicy.getIncorrectWordsBag() ) ;
 
         }   // end main()
-
-
-    /**
-     * Compares each word from a text file to the words in a dictionary, and sorts
-     * the word into the correct bag--either the correct or incorrectly spelled bag
-     *
-     * @param array
-     *     Array of the text file
-     * @param d
-     *     dictionary of words
-     * @param correct
-     *     bag of correctly spelled words for text file
-     * @param incorrect
-     *     bag of incorrectly spelled words for text file
-     */
-    private static void inDictionary( ArrayList<String> array,
-                                      Dictionary d,
-                                      BagInterface<String> correct,
-                                      BagInterface<String> incorrect )
-        {
-        for ( final String element : array )
-            {
-            if ( d.foundWord( element ) )
-                {
-                correct.add( element ) ;
-
-                }
-
-            if ( !d.foundWord( element ) && !incorrect.contains( element ) )
-                {
-                incorrect.add( element ) ;
-
-                }
-
-            }
-
-        }   // end inDictionary()
 
 
     /**
@@ -149,7 +84,12 @@ public class SpellChecker
         }   // end toPrint()
 
 
-    // Used to print contents of bag
+    /**
+     * Used to print contents of a bag
+     * 
+     * @param aBag
+     *     the bag that's contents needs to be printed
+     */
     private static void printBag( final BagInterface<String> aBag )
         {
         final Object[] bagArray = aBag.toArray() ;

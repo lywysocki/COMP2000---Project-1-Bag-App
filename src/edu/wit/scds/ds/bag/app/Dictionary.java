@@ -7,7 +7,7 @@ import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
 import java.util.Scanner ;
 
 /**
- * dictionary with the ability to load itself, lookup its, and return its contents
+ * dictionary with the ability to load itself, lookup its contents, and return its contents
  *
  * @author Laura Wysocki
  *
@@ -19,10 +19,6 @@ public class Dictionary
     /*
      * data fields
      */
-
-    /**
-     * replace Arraylist with Baginterface
-     */
     private BagInterface<String> dictionaryList = new ResizableArrayBag<>() ;
 
     /*
@@ -30,8 +26,8 @@ public class Dictionary
      */
 
     /**
-     * Creates an ArrayList of words from a given text file
-     *
+     * Creates a ResizableArrayBag of words from a given dictionary text file
+     * 
      * @param dictionary
      *     the dictionary text file
      */
