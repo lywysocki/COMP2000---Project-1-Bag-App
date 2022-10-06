@@ -1,14 +1,16 @@
 
 package edu.wit.scds.ds.bag.app ;
 
-import java.util.ArrayList ;
+import edu.wit.scds.ds.bag.BagInterface ;
+import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
+
 import java.util.Scanner ;
 
 /**
  * dictionary with the ability to load itself, lookup its, and return its contents
- * 
+ *
  * @author Laura Wysocki
- * 
+ *
  * @version 1.0.0 2022-09-30 Initial implementation
  */
 public class Dictionary
@@ -17,7 +19,11 @@ public class Dictionary
     /*
      * data fields
      */
-    private ArrayList<String> dictionaryList = new ArrayList<>() ;
+
+    /**
+     * replace Arraylist with Baginterface
+     */
+    private BagInterface<String> dictionaryList = new ResizableArrayBag<>() ;
 
     /*
      * constructor
@@ -25,7 +31,7 @@ public class Dictionary
 
     /**
      * Creates an ArrayList of words from a given text file
-     * 
+     *
      * @param dictionary
      *     the dictionary text file
      */
@@ -43,38 +49,17 @@ public class Dictionary
 
 
     /**
-     * Getter for the dictionary ArrayList
-     * 
-     * @return the dictionaryList ArrayList
-     */
-    public ArrayList<String> getDictionary()
-        {
-        return this.dictionaryList ;
-
-        }   // end getDictionary()
-
-
-    /**
      * Tests if dictionary contains a specific word regardless of case
-     * 
+     *
      * @param word
      *     The word to find
-     * 
+     *
      * @return true if the word is found in the dictionary, false if not
      */
     public boolean foundWord( String word )
         {
-        for ( final String wrd : this.dictionaryList )
-            {
-            if ( word.equalsIgnoreCase( wrd ) )
-                {
-                return true ;
-
-                }   // end if
-
-            }   // end for
-
-        return false ;
+        return this.dictionaryList.contains( word ) ||
+               this.dictionaryList.contains( word.toLowerCase() ) ;
 
         }   // end foundWord()
 

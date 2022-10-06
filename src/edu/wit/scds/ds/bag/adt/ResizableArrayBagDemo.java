@@ -4,24 +4,23 @@
  * Comp 2000 - Data Structures
  * Demonstration: Bag ADT
  * Fall, 2022
- * 
+ *
  * Usage restrictions:
- * 
+ *
  * You may use this code for exploration, experimentation, and furthering your
  * learning for this course. You may not use this code for any other
  * assignments, in my course or elsewhere, without explicit permission, in
  * advance, from myself (and the instructor of any other course).
- * 
+ *
  * Further, you may not post (including in a public repository such as on github)
- * nor otherwise share this code with anyone other than current students in my 
- * sections of this course. Violation of these usage restrictions will be considered 
+ * nor otherwise share this code with anyone other than current students in my
+ * sections of this course. Violation of these usage restrictions will be considered
  * a violation of the Wentworth Institute of Technology Academic Honesty Policy.
  *
  * Do not remove this notice.
  *
  * @formatter:on
  */
-
 
 package edu.wit.scds.ds.bag.adt ;
 
@@ -32,8 +31,11 @@ import edu.wit.scds.ds.bag.BagInterface ;
  *
  * @author Frank M. Carrano
  * @author Timothy M. Henry
+ *
  * @version 5.0
+ *
  * @author David M Rosenberg
+ *
  * @version 5.1.0 reformat per class standard
  */
 public class ResizableArrayBagDemo
@@ -81,6 +83,7 @@ public class ResizableArrayBagDemo
         for ( final Object element : bagArray )
             {
             System.out.print( element + " " ) ;
+
             } // end for
 
         System.out.println() ;
@@ -97,7 +100,9 @@ public class ResizableArrayBagDemo
             {
             aBag.add( element ) ;
             System.out.print( element + " " ) ;
+
             } // end for
+
         System.out.println() ;
 
         displayBag( aBag ) ;
@@ -112,8 +117,8 @@ public class ResizableArrayBagDemo
         System.out.println( "\nTesting the method contains:" ) ;
         for ( final String test : tests )
             {
-            System.out.println( "Does this bag contain " + test + "? " +
-                                aBag.contains( test ) ) ;
+            System.out.println( "Does this bag contain " + test + "? " + aBag.contains( test ) ) ;
+
             }
 
         }    // end testContains()
@@ -128,6 +133,7 @@ public class ResizableArrayBagDemo
             {
             System.out.println( "In this bag, the count of " + test + " is " +
                                 aBag.getFrequencyOf( test ) ) ;
+
             }
 
         }    // end testFrequency()
@@ -142,29 +148,36 @@ public class ResizableArrayBagDemo
         if ( correctResult )
             {
             System.out.println( "an empty bag:" ) ;
+
             }
         else
             {
             System.out.println( "a bag that is not empty:" ) ;
+
             }
 
         System.out.print( "isEmpty finds the bag " ) ;
         if ( correctResult && aBag.isEmpty() )
             {
             System.out.println( "empty: OK." ) ;
+
             }
         else if ( correctResult )
             {
             System.out.println( "not empty, but it is empty: ERROR." ) ;
+
             }
         else if ( !correctResult && aBag.isEmpty() )
             {
             System.out.println( "empty, but it is not empty: ERROR." ) ;
+
             }
         else
             {
             System.out.println( "not empty: OK." ) ;
+
             }
+
         System.out.println() ;
 
         }  // end testIsEmpty()
@@ -176,24 +189,25 @@ public class ResizableArrayBagDemo
         {
         for ( final String aString : tests )
             {
-            if ( aString.equals( "" ) || ( aString == null ) )
+            if ( "".equals( aString ) || ( aString == null ) )
                 {
                 // Test remove()
                 System.out.println( "\nRemoving a string from the bag:" ) ;
                 final String removedString = aBag.remove() ;
                 System.out.println( "remove() returns " + removedString ) ;
+
                 }
             else
                 {
                 // Test remove(aString)
-                System.out.println( "\nRemoving \"" + aString +
-                                    "\" from the bag:" ) ;
+                System.out.println( "\nRemoving \"" + aString + "\" from the bag:" ) ;
                 final boolean result = aBag.remove( aString ) ;
-                System.out.println( "remove(\"" + aString + "\") returns " +
-                                    result ) ;
+                System.out.println( "remove(\"" + aString + "\") returns " + result ) ;
+
                 } // end if
 
             displayBag( aBag ) ;
+
             } // end for
 
         }  // end testRemove()

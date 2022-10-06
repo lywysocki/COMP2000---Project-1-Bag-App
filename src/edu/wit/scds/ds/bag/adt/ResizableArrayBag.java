@@ -4,24 +4,23 @@
  * Comp 2000 - Data Structures
  * Demonstration: Bag ADT
  * Fall, 2022
- * 
+ *
  * Usage restrictions:
- * 
+ *
  * You may use this code for exploration, experimentation, and furthering your
  * learning for this course. You may not use this code for any other
  * assignments, in my course or elsewhere, without explicit permission, in
  * advance, from myself (and the instructor of any other course).
- * 
+ *
  * Further, you may not post (including in a public repository such as on github)
- * nor otherwise share this code with anyone other than current students in my 
- * sections of this course. Violation of these usage restrictions will be considered 
+ * nor otherwise share this code with anyone other than current students in my
+ * sections of this course. Violation of these usage restrictions will be considered
  * a violation of the Wentworth Institute of Technology Academic Honesty Policy.
  *
  * Do not remove this notice.
  *
  * @formatter:on
  */
-
 
 package edu.wit.scds.ds.bag.adt ;
 
@@ -34,8 +33,11 @@ import java.util.Arrays ;
  * The application may store {@code null} in this implementation.
  *
  * @author Frank M. Carrano, Timothy M. Henry
+ *
  * @version 5.0
+ *
  * @author David M Rosenberg
+ *
  * @version 5.1 2019-09-17
  *     <ul>
  *     <li>reformatted and minor changes
@@ -47,6 +49,7 @@ import java.util.Arrays ;
  *     <li>convert private method block comments to Javadoc
  *     </ul>
  * @version 5.3 2021-09-26 streamline various methods
+ *
  * @param <T>
  *     class of items the bag will hold
  */
@@ -55,10 +58,10 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
 
     private static final int DEFAULT_CAPACITY = 25 ; // Initial capacity of bag
     private static final int MAX_CAPACITY = 250_000 ;
-    
+
     private T[] bag ;                       // Cannot be final due to doubling
     private int numberOfEntries ;
-    
+
     private boolean integrityOK = false ;
 
     /** Creates an empty bag with the default capacity. */
@@ -83,9 +86,9 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         @SuppressWarnings( "unchecked" )
         final T[] tempBag = (T[]) new Object[ initialCapacity ] ;
         this.bag = tempBag ;
-        
+
         this.numberOfEntries = 0 ;
-        
+
         this.integrityOK = true ;
 
         }   // end 1-arg (initial size) constructor
@@ -102,9 +105,9 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         checkCapacity( contents.length ) ;
 
         this.bag = Arrays.copyOf( contents, contents.length ) ;
-        
+
         this.numberOfEntries = contents.length ;
-        
+
         this.integrityOK = true ;
 
         }   // end 1-arg (source array) constructor
@@ -115,6 +118,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param newEntry
      *     The object to be added as a new entry.
+     *
      * @return true
      */
     @Override
@@ -125,6 +129,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         if ( isArrayFull() )
             {
             doubleCapacity() ;
+
             } // end if
 
         this.bag[ this.numberOfEntries ] = newEntry ;
@@ -142,6 +147,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         while ( !isEmpty() )
             {
             remove() ;
+
             }
 
         }   // end clear()
@@ -152,6 +158,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param anEntry
      *     The entry to locate.
+     *
      * @return true if this bag contains anEntry, or false otherwise.
      */
     @Override
@@ -182,6 +189,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param anEntry
      *     The entry to be counted.
+     *
      * @return The number of times anEntry appears in this bag.
      */
     @Override
@@ -196,7 +204,9 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
             if ( anEntry.equals( this.bag[ index ] ) )
                 {
                 counter++ ;
+
                 } // end if
+
             } // end for
 
         return counter ;
@@ -228,7 +238,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         checkIntegrity() ;
 
         return removeEntry( this.numberOfEntries - 1 ) ;
-        
+
         }   // end remove()
 
 
@@ -237,6 +247,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param anEntry
      *     The entry to be removed.
+     *
      * @return true if the removal was successful, or false if not.
      */
     @Override
@@ -278,8 +289,9 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         if ( capacity > MAX_CAPACITY )
             {
             throw new IllegalStateException( "Attempt to create a bag whose " +
-                                             "capacity exceeds allowed " +
-                                             "maximum of " + MAX_CAPACITY ) ;
+                                             "capacity exceeds allowed " + "maximum of " +
+                                             MAX_CAPACITY ) ;
+
             }
 
         }   // end checkCapacity()
@@ -293,6 +305,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         if ( !this.integrityOK )
             {
             throw new SecurityException( "ArrayBag object is corrupt." ) ;
+
             }
 
         }   // end checkIntegrity()
@@ -321,17 +334,20 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param anEntry
      *     the entry to locate
+     *
      * @return the index of the entry, if located, or -1 otherwise
      */
     private int getIndexOf( final T anEntry )
         {
 
-        for ( int index = 0; index < this.numberOfEntries; index++ )
+        for ( int index = 0 ; index < this.numberOfEntries ; index++ )
             {
             if ( anEntry.equals( this.bag[ index ] ) )
                 {
                 return index ;
+
                 } // end if
+
             } // end for
 
         return -1 ;
@@ -359,6 +375,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
      *
      * @param givenIndex
      *     the entry's position in the array
+     *
      * @return the entry or null if no such entry exists
      */
     private T removeEntry( final int givenIndex )
@@ -368,13 +385,14 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
         if ( !isEmpty() && ( givenIndex >= 0 ) )
             {
             result = this.bag[ givenIndex ] ;  // Entry to remove
-            
+
             final int lastIndex = this.numberOfEntries - 1 ;
             this.bag[ givenIndex ] = this.bag[ lastIndex ] ;
-                                    // Replace entry to remove with last entry
+            // Replace entry to remove with last entry
             this.bag[ lastIndex ] = null ;  // Remove reference in last entry
-            
+
             this.numberOfEntries-- ;
+
             } // end if
 
         return result ;

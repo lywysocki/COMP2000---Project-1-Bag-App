@@ -1,16 +1,17 @@
 
 package edu.wit.scds.ds.bag.app ;
 
-import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
 import edu.wit.scds.ds.bag.BagInterface ;
-import java.util.Scanner ;
+import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
+
 import java.io.File ;
 import java.io.FileNotFoundException ;
 import java.util.ArrayList ;
+import java.util.Scanner ;
 
 /**
  * @author Noah Gagnon
- * 
+ *
  * @version 1.0.0 2022-09-26 Initial implementation
  */
 public class SpellChecker
@@ -24,10 +25,10 @@ public class SpellChecker
 
     /**
      * Program that uses a dictionary to spell check words within text files
-     * 
+     *
      * @param args
      *     run String[] args for program
-     * 
+     *
      * @throws FileNotFoundException
      *     if file does not exist, is corrupted, or cannot be found
      */
@@ -82,7 +83,7 @@ public class SpellChecker
     /**
      * Compares each word from a text file to the words in a dictionary, and sorts
      * the word into the correct bag--either the correct or incorrectly spelled bag
-     * 
+     *
      * @param array
      *     Array of the text file
      * @param d
@@ -118,7 +119,7 @@ public class SpellChecker
 
     /**
      * Used for formatting and printing the results of the spell check
-     * 
+     *
      * @param name
      *     name of text file
      * @param text
