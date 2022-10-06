@@ -123,20 +123,24 @@ public class SpellChecker
         // Printing results
         System.out.println( "The total word count of the-lancashire-cotton-famine.txt is " +
                             file1Array.length + "." ) ;
-        System.out.println("The total number of correctly spelt words: " + correctWordsBagFile1.getCurrentSize());
+        System.out.println( "The total number of correctly spelt words: " +
+                            correctWordsBagFile1.getCurrentSize() ) ;
         System.out.println( "The list of correct words: " ) ;
         printBag( correctWordsBagFile1 ) ;
-        System.out.println("The total number of incorrectly spelt words: " + incorrectWordsBagFile1.getCurrentSize());
+        System.out.println( "The total number of incorrectly spelt words: " +
+                            incorrectWordsBagFile1.getCurrentSize() ) ;
         System.out.println( "The list of incorrect words: " ) ;
         printBag( incorrectWordsBagFile1 ) ;
         System.out.println() ;
 
         System.out.println( "The total word count of wit-attendance-policy.txt is " +
                             file2Array.length + "." ) ;
-        System.out.println("The total number of correctly spelt words: " + correctWordsBagFile2.getCurrentSize());
+        System.out.println( "The total number of correctly spelt words: " +
+                            correctWordsBagFile2.getCurrentSize() ) ;
         System.out.println( "The list of correct words: " ) ;
         printBag( correctWordsBagFile2 ) ;
-        System.out.println("The total number of incorrectly spelt words: " + incorrectWordsBagFile2.getCurrentSize());
+        System.out.println( "The total number of incorrectly spelt words: " +
+                            incorrectWordsBagFile2.getCurrentSize() ) ;
         System.out.println( "The list of incorrect words: " ) ;
         printBag( incorrectWordsBagFile2 ) ;
 

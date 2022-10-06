@@ -1,22 +1,12 @@
 
 package edu.wit.scds.ds.bag.app ;
 
-import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
-
 import java.util.ArrayList ;
-import java.util.List ;
 import java.util.Scanner ;
 
-import java.io.File ;
-
-import java.io.FileNotFoundException ;
-
 /**
- * dictuion ary = loading itself & word lopokup
- */
-
-/**
- * dictionary with the ability to both load itself and lookup its cotnents
+ * dictionary with the ability to load itself, lookup its number of contents, and
+ * contents
  * 
  * @author wysockil
  * 
@@ -24,15 +14,34 @@ import java.io.FileNotFoundException ;
  */
 public class Dictionary
     {
-    /*
-     * constants
-     */
-    Scanner dictionary = new Scanner( new File( "./data/american-english-JL.txt" ), "Cp1252" ) ;
 
     /*
      * data fields
      */
-    private List<String> dictionaryList = new ArrayList<String>() ;
+    private ArrayList<String> dictionaryList = new ArrayList<>() ;
+
+    /*
+     * constructor
+     */
+
+    /**
+     * Creates an ArrayList of words from a given text file
+     * 
+     * @param dictionary
+     *     the dictionary text file
+     */
+    public Dictionary( Scanner dictionary )
+        {
+        while ( dictionary.hasNext() )
+            {
+            this.dictionaryList.add( dictionary.next() ) ;
+
+            }
+
+        dictionary.close() ;
+
+        }   // end Dictionary()
+
 
     /**
      * adds word to dictionary
@@ -47,10 +56,40 @@ public class Dictionary
         }   // end addWord()
 
 
-    public boolean findWord( String word )
+    /**
+     * Tests if dictionary contains a specific word regardless of case
+     * 
+     * @param word
+     *     The word to find
+     * 
+     * @return true if the word is found in the dictionary, false if not
+     */
+    public boolean foundWord( String word )
         {
-        
+        for ( String wrd : this.dictionaryList )
+            {
+            if ( word.equalsIgnoreCase( wrd ) )
+                {
+                return true ;
 
-        }   // end findWord
+                }   // end if
+
+            }   // end for
+
+        return false ;
+
+        }   // end foundWord
+
+
+    /**
+     * Finds size of the dictionary ArrayList
+     * 
+     * @return the size of the dictionary; the number of entries
+     */
+    public int getSize()
+        {
+        return this.dictionaryList.size() ;
+
+        }
 
     }   // end class Dictionary
