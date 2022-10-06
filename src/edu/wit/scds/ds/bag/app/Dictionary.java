@@ -7,11 +7,12 @@ import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
 import java.util.Scanner ;
 
 /**
- * dictionary with the ability to load itself, lookup its contents, and return its contents
+ * dictionary with the ability to load itself, lookup its contents, and return its
+ * contents
  *
  * @author Laura Wysocki
  *
- * @version 1.0.0 2022-09-30 Initial implementation
+ * @version 2.0.0 2022-09-30 Final implementation
  */
 public class Dictionary
     {

@@ -13,7 +13,7 @@ import java.util.Scanner ;
  * 
  * @author Laura Wysocki
  * 
- * @version 1.0.0 2022-10-06 Initial implementation
+ * @version 2.0.0 2022-10-06 Final implementation
  */
 public class TextBagger
     {
@@ -79,7 +79,7 @@ public class TextBagger
 
         textFile.close() ;
 
-        }   // end SpellChecker()
+        }   // end TextBagger()
 
 
     /**
@@ -119,6 +119,4 @@ public class TextBagger
 
         }   // end getIncorrectWordsBag()
 
-    }
-
-// end class Printing
+    }   // end class TextBagger

@@ -11,7 +11,7 @@ import java.util.Scanner ;
  * 
  * @author Noah Gagnon
  *
- * @version 1.0.0 2022-09-26 Initial implementation
+ * @version 2.0.0 2022-09-26 Final implementation
  */
 public class SpellChecker
     {
