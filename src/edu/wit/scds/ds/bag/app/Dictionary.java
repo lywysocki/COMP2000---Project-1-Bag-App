@@ -40,20 +40,17 @@ public class Dictionary
 
         dictionary.close() ;
 
-        }   // end Dictionary()
-
-
+        }   // end 1-arg (scanner) constructor
+    
     /**
-     * adds word to dictionary
      * 
-     * @param word
-     *     the word needed to be added to dictionary
+     * 
+     * @return
      */
-    public void addWord( String word )
-        {
-        this.dictionaryList.add( word ) ;
-
-        }   // end addWord()
+    public ArrayList<String> getDictionary()
+    {
+    return this.dictionaryList ;
+    }
 
 
     /**

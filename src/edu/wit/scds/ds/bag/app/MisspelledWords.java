@@ -1,8 +1,6 @@
 
 package edu.wit.scds.ds.bag.app ;
 
-import edu.wit.scds.ds.bag.adt.ResizableArrayBag ;
-
 import java.util.ArrayList ;
 
 /**
@@ -31,16 +29,45 @@ public class MisspelledWords
         {
         this.array = oldArray ;
 
-        }
+        }   // end 1-arg (set array as) constructor
 
 
+    /**
+     * removes special characters like . , ; from the array
+     * 
+     * @return an array without the characters . , ; throughout it
+     */
     public ArrayList<String> removeSpecialCharacters()
         {
-        for (String word : this.array)
+        ArrayList<String> newArray = new ArrayList<>() ;
+        for ( String word : this.array )
             {
-            word = word.replaceAll(  "[.,;]", "") ;
+            if (word.contains( "." ))
+                {
+                word = word.replaceAll( ".", "" ) ;
+                newArray.add( word);
+                }
+            else if (word.contains( "," ))
+                {
+                word = word.replaceAll( ",", "" ) ;
+                newArray.add( word);
+                }
+            else if (word.contains( ";" ))
+                {
+                word = word.replaceAll( ";", "" ) ;
+                newArray.add( word);
+                }
+            else
+                {
+                newArray.add( word);
+                }
+
             }
 
-        }
+        return newArray ;
+
+        }   // end removeSpecialCharacters
+    
+    
 
     }   // end class MisspelledWords

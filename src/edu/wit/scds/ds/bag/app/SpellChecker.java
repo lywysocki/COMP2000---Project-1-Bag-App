@@ -16,7 +16,22 @@ import java.util.List ;
  */
 public class SpellChecker
     {
+    /*
+     * Constants
+     */
+    
+    
+    
+    /*
+     * data fields
+     */
 
+    /**
+     * 
+     * 
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main( final String[] args ) throws FileNotFoundException
         {
         // Creates scanner for both text files
@@ -24,50 +39,23 @@ public class SpellChecker
         // Added Cp1252 to file2 as scanner was not reading entire file, solution I
         // found online said to change character encoding
         Scanner file1 = new Scanner( new File( "./data/the-lancashire-cotton-famine.txt" ) ) ;
+        Dictionary tlcfDICT = new Dictionary(file1) ;
+        ArrayList<String> tlcfAL = tlcfDICT.getDictionary() ;
+        MisspelledWords newTLCF = new MisspelledWords(tlcfAL) ;
+        tlcfAL = newTLCF.removeSpecialCharacters() ;
+        
+        
         Scanner file2 = new Scanner( new File( "./data/wit-attendance-policy.txt" ), "Cp1252" ) ;
-        Scanner dictionary = new Scanner( new File( "./data/american-english-JL.txt" ), "Cp1252" ) ;
-
-        // Creating Arraylist of strings for both files
-        List<String> file1List = new ArrayList<>() ;
-        List<String> file2List = new ArrayList<>() ;
-        List<String> dictionaryList = new ArrayList<>() ;
-
-        // Reading both files and adding contents to ArrayList
-        while ( file1.hasNext() )
-            {
-            file1List.add( file1.next() ) ;
-
-            }
-
-        while ( file2.hasNext() )
-            {
-            file2List.add( file2.next() ) ;
-
-            }
-
-        while ( dictionary.hasNext() )
-            {
-            dictionaryList.add( dictionary.next() ) ;
-
-            }
-
-        // Turning arrayList into arrays
-        String[] file1Array = file1List.toArray( new String[ 0 ] ) ;
-        String[] file2Array = file2List.toArray( new String[ 0 ] ) ;
-        String[] dictionaryArray = dictionaryList.toArray( new String[ 0 ] ) ;
-
-        // Removes special characters
-        for ( int i = 0 ; i < file1Array.length ; i++ )
-            {
-            file1Array[ i ] = file1Array[ i ].replaceAll( "[.,;]", "" ) ;
-
-            }
-
-        for ( int i = 0 ; i < file2Array.length ; i++ )
-            {
-            file2Array[ i ] = file2Array[ i ].replaceAll( "[.,;]", "" ) ;
-
-            }
+        Dictionary wapDICT = new Dictionary(file2) ;
+        ArrayList<String> wapAL = wapDICT.getDictionary() ;
+        MisspelledWords newWAP = new MisspelledWords(wapAL) ;
+        wapAL = newWAP.removeSpecialCharacters() ;
+        
+        
+        Scanner dictionaryTXT = new Scanner( new File( "./data/american-english-JL.txt" ), "Cp1252" ) ;
+        Dictionary dictionary = new Dictionary(dictionaryTXT) ;
+        ArrayList<String> dict = dictionary.getDictionary() ;
+        String[] dictionaryArray = dict.toArray( new String[ 0 ] ) ;
 
         // Turning Arrays into bags
         // BagInterface<String> file1Bag = new ResizableArrayBag<>( file1Array ) ;
@@ -79,42 +67,40 @@ public class SpellChecker
         BagInterface<String> incorrectWordsBagFile2 = new ResizableArrayBag<>() ;
 
         // Checking if words appear in dictionary for file1
-        for ( int i = 0 ; i < file1Array.length ; i++ )
+        for (String element : tlcfAL)
             {
-            if ( dictionaryBag.contains( file1Array[ i ] ) ||
-                 ( dictionaryBag.contains( file1Array[ i ].toLowerCase() ) ) )
+            if (  dictionary.foundWord( element ) )
                 {
-                correctWordsBagFile1.add( file1Array[ i ] ) ;
+                correctWordsBagFile1.add( element ) ;
 
                 }
 
-            if ( !dictionaryBag.contains( file1Array[ i ] ) &&
-                 ( !dictionaryBag.contains( file1Array[ i ].toLowerCase() ) &&
-                   ( !incorrectWordsBagFile1.contains( file1Array[ i ] ) ) &&
-                   ( !incorrectWordsBagFile1.contains( file1Array[ i ].toLowerCase() ) ) ) )
+            if ( !dictionaryBag.contains( element ) &&
+                 ( !dictionaryBag.contains( element.toLowerCase() ) &&
+                   ( !incorrectWordsBagFile1.contains( element ) ) &&
+                   ( !incorrectWordsBagFile1.contains( element.toLowerCase() ) ) ) )
                 {
-                incorrectWordsBagFile1.add( file1Array[ i ] ) ;
+                incorrectWordsBagFile1.add( element ) ;
 
                 }
 
             }
 
         // Checking if words appear in dictionary for file2
-        for ( int i = 0 ; i < file2Array.length ; i++ )
+        for ( String element : wapAL )
             {
-            if ( dictionaryBag.contains( file2Array[ i ] ) ||
-                 ( dictionaryBag.contains( file2Array[ i ].toLowerCase() ) ) )
+            if ( dictionary.foundWord( element ) )
                 {
-                correctWordsBagFile2.add( file2Array[ i ] ) ;
-
+                correctWordsBagFile2.add( element ) ;
                 }
 
-            if ( !dictionaryBag.contains( file2Array[ i ] ) &&
-                 ( !dictionaryBag.contains( file2Array[ i ].toLowerCase() ) &&
-                   ( !incorrectWordsBagFile2.contains( file2Array[ i ] ) ) &&
-                   ( !incorrectWordsBagFile2.contains( file2Array[ i ].toLowerCase() ) ) ) )
+
+            if ( !dictionaryBag.contains( element ) &&
+                 ( !dictionaryBag.contains( element.toLowerCase() ) &&
+                   ( !incorrectWordsBagFile2.contains( element ) ) &&
+                   ( !incorrectWordsBagFile2.contains( element.toLowerCase() ) ) ) )
                 {
-                incorrectWordsBagFile2.add( file2Array[ i ] ) ;
+                incorrectWordsBagFile2.add( element ) ;
 
                 }
 
@@ -122,7 +108,7 @@ public class SpellChecker
 
         // Printing results
         System.out.println( "The total word count of the-lancashire-cotton-famine.txt is " +
-                            file1Array.length + "." ) ;
+                                        tlcfAL.size() + "." ) ;
         System.out.println( "The total number of correctly spelt words: " +
                             correctWordsBagFile1.getCurrentSize() ) ;
         System.out.println( "The list of correct words: " ) ;
@@ -134,7 +120,7 @@ public class SpellChecker
         System.out.println() ;
 
         System.out.println( "The total word count of wit-attendance-policy.txt is " +
-                            file2Array.length + "." ) ;
+                                        wapAL.size() + "." ) ;
         System.out.println( "The total number of correctly spelt words: " +
                             correctWordsBagFile2.getCurrentSize() ) ;
         System.out.println( "The list of correct words: " ) ;
