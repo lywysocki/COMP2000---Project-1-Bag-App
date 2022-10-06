@@ -6,7 +6,7 @@ import java.util.ArrayList ;
 /**
  * return misspelled words, words correctly spelled both with and without punctuation
  * 
- * @author wysockil
+ * @author Laura Wysocki
  * 
  * @version 1.0.0 2022-09-30 Initial implementation
  */
@@ -16,11 +16,10 @@ public class MisspelledWords
     /*
      * Data fields
      */
-
     private ArrayList<String> array = new ArrayList<>() ;
 
     /**
-     * Creates an array of words that needs to be checked
+     * Creates an array of words that needs to be checked for spelling
      * 
      * @param oldArray
      *     the initial array
@@ -29,7 +28,7 @@ public class MisspelledWords
         {
         this.array = oldArray ;
 
-        }   // end 1-arg (set array as) constructor
+        }   // end 1-arg (ArrayList) constructor
 
 
     /**
@@ -42,24 +41,28 @@ public class MisspelledWords
         ArrayList<String> newArray = new ArrayList<>() ;
         for ( String word : this.array )
             {
-            if (word.contains( "." ))
+            if ( word.contains( "." ) )
                 {
                 word = word.replaceAll( ".", "" ) ;
-                newArray.add( word);
+                newArray.add( word ) ;
+
                 }
-            else if (word.contains( "," ))
+            else if ( word.contains( "," ) )
                 {
                 word = word.replaceAll( ",", "" ) ;
-                newArray.add( word);
+                newArray.add( word ) ;
+
                 }
-            else if (word.contains( ";" ))
+            else if ( word.contains( ";" ) )
                 {
                 word = word.replaceAll( ";", "" ) ;
-                newArray.add( word);
+                newArray.add( word ) ;
+
                 }
             else
                 {
-                newArray.add( word);
+                newArray.add( word ) ;
+
                 }
 
             }
@@ -67,7 +70,5 @@ public class MisspelledWords
         return newArray ;
 
         }   // end removeSpecialCharacters
-    
-    
 
     }   // end class MisspelledWords

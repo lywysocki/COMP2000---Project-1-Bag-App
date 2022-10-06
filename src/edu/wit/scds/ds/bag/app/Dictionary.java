@@ -5,10 +5,9 @@ import java.util.ArrayList ;
 import java.util.Scanner ;
 
 /**
- * dictionary with the ability to load itself, lookup its number of contents, and
- * contents
+ * dictionary with the ability to load itself, lookup its, and return its contents
  * 
- * @author wysockil
+ * @author Laura Wysocki
  * 
  * @version 1.0.0 2022-09-30 Initial implementation
  */
@@ -41,16 +40,18 @@ public class Dictionary
         dictionary.close() ;
 
         }   // end 1-arg (scanner) constructor
-    
+
+
     /**
+     * Getter for the dictionary ArrayList
      * 
-     * 
-     * @return
+     * @return the dictionaryList ArrayList
      */
     public ArrayList<String> getDictionary()
-    {
-    return this.dictionaryList ;
-    }
+        {
+        return this.dictionaryList ;
+
+        }   // end getDictionary()
 
 
     /**
@@ -63,7 +64,7 @@ public class Dictionary
      */
     public boolean foundWord( String word )
         {
-        for ( String wrd : this.dictionaryList )
+        for ( final String wrd : this.dictionaryList )
             {
             if ( word.equalsIgnoreCase( wrd ) )
                 {
@@ -75,18 +76,6 @@ public class Dictionary
 
         return false ;
 
-        }   // end foundWord
-
-
-    /**
-     * Finds size of the dictionary ArrayList
-     * 
-     * @return the size of the dictionary; the number of entries
-     */
-    public int getSize()
-        {
-        return this.dictionaryList.size() ;
-
-        }
+        }   // end foundWord()
 
     }   // end class Dictionary
