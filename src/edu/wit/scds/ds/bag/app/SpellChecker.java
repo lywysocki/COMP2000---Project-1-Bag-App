@@ -72,7 +72,7 @@ public class SpellChecker
         System.out.printf( "The total word count of " + name + " is: " + text.getCurrentSize() +
                            ".%n" ) ;
         System.out.printf( "The total number of correctly spelt words: " +
-                           correct.getCurrentSize() + "%n" ) ;
+                           (text.getCurrentSize() - incorrect.getCurrentSize()) + "%n" ) ;
         System.out.printf( "The list of correct words: %n" ) ;
         printBag( correct ) ;
         System.out.printf( "The total number of incorrectly spelt words: " +
